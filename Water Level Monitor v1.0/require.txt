@@ -1,0 +1,3 @@
+- PubSubClient          (by Nick O'Leary)  >= 2.8
+- ArduinoJson          (by Benoit Blanchon) >= 7.x
+- ESP32 Board Package  (by Espressif)     >= 2.0.14
