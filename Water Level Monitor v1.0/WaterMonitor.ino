@@ -14,6 +14,7 @@
 
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
+#include <HTTPClient.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include <Preferences.h>
@@ -301,12 +302,18 @@ static void startDiscovery() {
     return;
   }
   MDNS.addService("watermon", "tcp", 80);
-  MDNS.addServiceTxt("watermon", "tcp", "id",    deviceId);
-  MDNS.addServiceTxt("watermon", "tcp", "model", DEVICE_MODEL);
-  MDNS.addServiceTxt("watermon", "tcp", "fw",    FW_VERSION);
-  MDNS.addServiceTxt("watermon", "tcp", "cap",   "level,battery,ota,mqtt");
+
+  // ✅ FIX: String() wrapper နဲ့ explicit cast လုပ်ပါ
+  MDNS.addServiceTxt(String("watermon"), String("tcp"), String("id"),    String(deviceId));
+  MDNS.addServiceTxt(String("watermon"), String("tcp"), String("model"), String(DEVICE_MODEL));
+  MDNS.addServiceTxt(String("watermon"), String("tcp"), String("fw"),    String(FW_VERSION));
+  MDNS.addServiceTxt(String("watermon"), String("tcp"), String("cap"),   String("level,battery,ota,mqtt"));
+
   Serial.printf("[MDNS] %s.local  _watermon._tcp\n", deviceId);
 }
+
+// သို့မဟုတ် ပိုတိုတဲ့နည်း (cast တစ်ခုတည်း):
+// MDNS.addServiceTxt("watermon", "tcp", "id", (const char*)deviceId);
 
 // =====================================================================
 //  SECTION 9 :  WiFi CONNECT
