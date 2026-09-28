@@ -1,0 +1,27 @@
+WaterMonitor/                ← Sketch folder (name must match .ino)
+├── WaterMonitor.ino         ← Main sketch
+├── AppConfig.h
+├── certs.h
+├── ConfigManager.h
+├── ConfigManager.cpp
+├── LEDStatus.h
+├── LEDStatus.cpp
+├── Battery.h
+├── Battery.cpp
+├── AJSR04M.h
+├── AJSR04M.cpp
+├── WiFiProvisioning.h
+├── WiFiProvisioning.cpp
+├── WebConfig.h
+├── WebConfig.cpp
+├── Discovery.h
+├── Discovery.cpp
+├── MQTTManager.h
+├── MQTTManager.cpp
+├── OTAManager.h
+├── OTAManager.cpp
+├── HAClient.h
+└── HAClient.cpp
+
+WaterMonitorFactory/         ← Separate factory-test sketch
+└── WaterMonitorFactory.ino
